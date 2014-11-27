@@ -56,13 +56,12 @@ public class DemoActivity extends Activity {
      * Substitute you own sender ID here. This is the project number you got
      * from the API Console, as described in "Getting Started."
      */
-    String SENDER_ID = "Your-Sender-ID";
+    String SENDER_ID = "668791872504";
 
     /**
      * Tag used on log messages.
      */
     static final String TAG = "GCM Demo";
-	private static final String GMS_SUBSCRIPTION_URL = "http://ec2-54-147-250-15.compute-1.amazonaws.com:8080/genesys/1/notification/subscription";
 
     TextView mDisplay;
     GoogleCloudMessaging gcm;
@@ -274,19 +273,19 @@ public class DemoActivity extends Activity {
      */
     private void sendRegistrationIdToBackend(String regid) {
     	HttpClient httpclient = new DefaultHttpClient();  
-        HttpPost request = new HttpPost(GMS_SUBSCRIPTION_URL);
-        String json = "{\"subscriberId\":\"Foobar\",\"notificationDetails\":{\"deviceId\":" + regid +", \"typ\":\"gcm\"},\"expire\":180, \"filter\":\"test.foo\"}";
+        HttpPost httpPost = new HttpPost("http://ec2-54-147-250-15.compute-1.amazonaws.com:8080/genesys/1/notification/subscription");
+        String json = "{\"subscriberId\":\"Foobar\",\"notificationDetails\":{\"deviceId\": \"" + regid +"\", \"type\":\"gcm\"},\"expire\":180, \"filter\":\"test.foo\"}";
         try {
-			request.setEntity(new StringEntity(json));
+        	httpPost.setEntity(new StringEntity(json));
 		} catch (UnsupportedEncodingException e1) {
 			e1.printStackTrace();
 		}
-        request.setHeader("Accept", "application/json");
-        request.setHeader("Content-type", "application/json");
+        httpPost.setHeader("Accept", "application/json");
+        httpPost.setHeader("Content-type", "application/json");
         ResponseHandler<String> handler = new BasicResponseHandler();  
         String result = null;
 		try {  
-            result = httpclient.execute(request, handler);  
+            result = httpclient.execute(httpPost, handler);  
             Log.i(TAG, "Registration result for " + regid + " is " + result);
         } catch (ClientProtocolException e) {  
             e.printStackTrace();  
