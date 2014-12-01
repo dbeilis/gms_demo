@@ -84,9 +84,10 @@ public class DemoActivity extends Activity {
             gcm = GoogleCloudMessaging.getInstance(this);
             regid = getRegistrationId(context);
 
-            if (regid.isEmpty()) {
+            // Force application to always register on the startup to avoid GMS notification expiration
+            // if (regid.isEmpty()) {
                 registerInBackground();
-            }
+            // }
         } else {
             Log.i(TAG, "No valid Google Play Services APK found.");
         }
