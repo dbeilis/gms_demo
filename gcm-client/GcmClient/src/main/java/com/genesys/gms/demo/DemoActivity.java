@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.google.android.gcm.demo.app;
+package com.genesys.gms.demo;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -84,9 +84,9 @@ public class DemoActivity extends Activity {
             gcm = GoogleCloudMessaging.getInstance(this);
             regid = getRegistrationId(context);
 
-            if (regid.isEmpty()) {
+            // if (regid.isEmpty()) {
                 registerInBackground();
-            }
+            //}
         } else {
             Log.i(TAG, "No valid Google Play Services APK found.");
         }

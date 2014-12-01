@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.google.android.gcm.demo.app;
+package com.genesys.gms.demo;
 
 import android.app.Activity;
 import android.content.ComponentName;

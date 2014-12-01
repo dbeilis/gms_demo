@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.android.gcm.demo.app;
+package com.genesys.gms.demo;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
