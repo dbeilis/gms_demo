@@ -84,9 +84,9 @@ public class DemoActivity extends Activity {
             gcm = GoogleCloudMessaging.getInstance(this);
             regid = getRegistrationId(context);
 
-            // if (regid.isEmpty()) {
+            if (regid.isEmpty()) {
                 registerInBackground();
-            //}
+            }
         } else {
             Log.i(TAG, "No valid Google Play Services APK found.");
         }
@@ -274,7 +274,7 @@ public class DemoActivity extends Activity {
     private void sendRegistrationIdToBackend(String regid) {
     	HttpClient httpclient = new DefaultHttpClient();  
         HttpPost httpPost = new HttpPost("http://ec2-54-147-250-15.compute-1.amazonaws.com:8080/genesys/1/notification/subscription");
-        String json = "{\"subscriberId\":\"Foobar\",\"notificationDetails\":{\"deviceId\": \"" + regid +"\", \"type\":\"gcm\"},\"expire\":180, \"filter\":\"test.foo\"}";
+        String json = "{\"subscriberId\":\"Foobar\",\"notificationDetails\":{\"deviceId\": \"" + regid +"\", \"type\":\"gcm\"},\"expire\":180000000, \"filter\":\"test.foo\"}";
         try {
         	httpPost.setEntity(new StringEntity(json));
 		} catch (UnsupportedEncodingException e1) {
